@@ -13,10 +13,13 @@
         <a href="/about/">О нас</a> |
         <a href="/playlists/">Плейлисты</a>
     </nav>
-    <h2>Все плейлисты</h2>
-    {% for object in objects_list %}
-        <div>{{ object.name }}</div>
+    <h1>Все видео</h1>
+    {% for video in videos_list %}
+        <div>
+            <a href="/video/{{ video.id }}/">
+                {{ video.name }}
+            </a>
+        </div>
     {% endfor %}
-    
 </body>
 </html>

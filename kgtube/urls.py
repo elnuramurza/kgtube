@@ -28,10 +28,10 @@ urlpatterns = [
     path('', homepage),
     path('about/', about_view),
     path('playlists/', playlists),
+    # path('playlists/', views.playlists),
     path('videos/', videos),
-    path('video/<int;id'/,video),   
-   ]
-      
+    path('video/<int:id>/', video),
+]    
    
 
 
