@@ -31,12 +31,7 @@ urlpatterns = [
     # path('playlists/', views.playlists),
     path('videos/', videos),
     path('video/<int:id>/', video),
-]    
-   
-
-
-    # path('playlists/', views.playlists),
-
+]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
