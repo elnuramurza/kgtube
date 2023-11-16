@@ -17,9 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.views import homepage, about_view
-from playlist.views import playlists
+from playlist.views import playlist,playlist_add
 # from playlist import views
-from video.views import videos, video
+from video.views import videos, video, video_add
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,10 +27,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
     path('about/', about_view),
-    path('playlists/', playlists),
+    path('playlist/', playlist,),
+    path('playlist-add/', playlist_add, name='playlist-add'),
     # path('playlists/', views.playlists),
     path('videos/', videos),
     path('video/<int:id>/', video),
+    path('video-add/', video_add, name='video-add')
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

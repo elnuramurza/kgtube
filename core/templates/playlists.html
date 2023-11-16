@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h2>Все плейлисты</h2>
-    {% for object in objects_list %}
-        <div>{{ object.name }}</div>
-    {% endfor %}
+    <div class="row">
+        {% for playlist in playlist_list  %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <a href="/playlist/{{ playlist.id }}/">
+                    <playlist width="95%">
+                        <source src="{{ playlist.file_path.url }}">
+                    </playlist>
+                    <h3>{{ playlist.name }}</h3>
+                    <span><img height="20px" src="{% static 'like.svg' %}" alt=""> {{ playlist.likes }}</span> 
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

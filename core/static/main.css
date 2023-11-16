@@ -10,3 +10,8 @@
 /* div {
     color: rgb(0, 150, 30)
 } */
+a, a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
