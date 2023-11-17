@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import UserPlayList
 
 # Create your views here.
-def playlist(request):
+def playlists(request):
     # SELECT * FROM UserPlayList;
     query_result = UserPlayList.objects.all()
 
@@ -11,21 +11,28 @@ def playlist(request):
 
     return render(
         request,
-        'playlist.html',
+        'playlists.html',
         context
     )
+
+def playlist_info(request, id):
+    playlist_object = UserPlayList.objects.get(id=id)
+    context = {"playlist_object": playlist_object}
+    return render(request, "playlist_info.html", context)
+
+
+
 def playlist_add(request):
-    if request.method == "GET":
-        return render(request, 'playlist_add.html')
-    elif request.method == "POST":
-        name = request.POST["playlist_name"]
-        playlist_file = request.FILES["playlist_file"]
-        playlist_object = playlist(name=name,
-        file_path=playlist_file,
-    
+    if request.method == "POST":
+        # request.POST - это словарь
+        name = request.POST["playlist_name"] # str 
+        description = request.POST["description"] # str
+        # print(request.POST)
+        # print(name)
+        playlist_object = UserPlayList.objects.create(
+            name=name,
+            description=description,
         )
-        # video_object.description = "hello world"
-        # INSERT INTO ...
-        playlist_object.save()
-        return redirect(playlist, id=playlist_object.id)
-           
+        return redirect(playlist_info, id=playlist_object.id)
+    
+    return render(request, "playlist_add.html")

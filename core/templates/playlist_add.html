@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST">
         {% csrf_token %}
-        <p>
-            <input class="form-control" type="text" name="playlist_name">
-        </p>
-        <p>
-            <input class="form-control" type="file" name="playlist_file">
-        </p>
-        <button class="btn btn-primary">Загрузить</button>
+        <input type="text" name="playlist_name">
+        <input type="text" name="description">
+        <button>Добавить</button>
     </form>
 {% endblock %}

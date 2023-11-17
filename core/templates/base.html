@@ -3,7 +3,6 @@
 {% load django_bootstrap5 %}
 <html lang="en">
 <head>
-    <title>logo.png</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -16,12 +15,12 @@
         rel="stylesheet"
         href="{% static 'main.css' %}">
     <script src="{% static 'myscript.js' %}"></script>
-</head>   
+</head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
-        <img src="{% static 'logo.png' %}" height="45px" alt="logo">
+          <img src="{% static 'logo.png' %}" height="45px" alt="logo">
         </a>
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" aria-expanded="false">
           <span class="navbar-toggler-icon"></span>
@@ -38,15 +37,18 @@
               <a class="nav-link" href="/about/">О нас</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'playlist-add'%}">Плейлисты</a>
+              <a class="nav-link" href="/playlists/">Плейлисты</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'video-add' %}">Добавить видео</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'playlist-add' %}">Добавить плейлист</a>
+            </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="text" placeholder="Search">
-            <button class="btn btn-dark" type="button">Поиск</button>
+          <form class="d-flex" action="/search/">
+            <input class="form-control me-2" type="text" name="key_word" placeholder="Введите">
+            <button class="btn btn-dark">Поиск</button>
           </form>
         </div>
       </div>
