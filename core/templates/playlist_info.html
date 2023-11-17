@@ -7,4 +7,6 @@
     <div>
         {{ playlist_object.description }}
     </div>
+    <a href="{% url 'playlist-update' playlist_object.id %}" class="btn btn-warning">Изменить</a>
+    <a href="{% url 'playlist-delete' playlist_object.id %}" class="btn btn-danger">Удалить</a>
 {% endblock %}
