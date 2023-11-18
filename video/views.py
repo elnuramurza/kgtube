@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Video
 
-
 def videos(request):
     videos_list = Video.objects.all()
     context = {"videos_list": videos_list}
@@ -44,3 +43,24 @@ def video_delete(request, id):
     video_object = Video.objects.get(id=id)
     video_object.delete()
     return redirect(videos)
+
+def video_df_add(request):
+    context = {}
+    if request.method == "POST":
+        # код создания playlist 
+
+        # создаём объект формы с значениями
+        video_form = VideoForm(request.POST)
+        # проверка валидности
+        if video_form.is_valid():
+            # создаём запись в БД
+            video_object = video_form.save()
+            return redirect(video_info, id=video_object.id)
+    
+    video_form = VideoForm()
+    context["video_form"] = video_form
+    return render(request, "video_df_add.html", context) 
+    
+
+
+    

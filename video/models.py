@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from playlist.models import UserPlayList
 
+
 # Create your models here.
 class Video(models.Model):
     file_path = models.FileField(upload_to="video/") # путь к видео файлу
