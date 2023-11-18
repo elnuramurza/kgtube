@@ -34,5 +34,9 @@ class Comment(models.Model):
     updated_by = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.txt[:10]       
-    
+        return self.txt[:10]  
+    @property
+    def author (self):  
+        return self.user.username  
+
+

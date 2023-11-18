@@ -15,6 +15,12 @@
         <p>
             {{ comment.txt }}
         </p>
-
-    {% endfor %}
-{% endblock %}
+        
+    <div>
+        <p>Автор: {{ comment.author }}</p>
+        <p>Дата комментария: {{ comment.created_at }}</p>
+        <p>{{ comment.txt }}</p>
+    </div>
+     {% endfor %}
+{% endblock %}    
+  
