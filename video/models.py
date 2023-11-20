@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from playlist.models import UserPlayList
 
 
+
 # Create your models here.
 class Video(models.Model):
     file_path = models.FileField(upload_to="video/") # путь к видео файлу
@@ -19,7 +20,6 @@ class Video(models.Model):
     def __str__(self):
         return self.name
 
-
 class Comment(models.Model):
     txt = models.TextField(verbose_name="Текст комментария")
     video = models.ForeignKey(
@@ -35,8 +35,23 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.txt[:10]  
-    @property
-    def author (self):  
-        return self.user.username  
+
+class VideoView(models.Model):
+    video = models.ForeignKey(
+        to=Video,
+        on_delete=models.CASCADE,
+    )
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE
+    )
+    created_by = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Просмотр"
+        verbose_name_plural = "Просмотры"
+        unique_together = [["video", "user"]]
+           
+    
 
 
