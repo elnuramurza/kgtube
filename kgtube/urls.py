@@ -25,6 +25,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('profile/', profile, name='profile'),   
     path('', homepage),
     path('about/', about_view),
     path('playlists/', playlists),
@@ -41,6 +42,7 @@ urlpatterns = [
     path('video-add/', video_add, name='video-add'),
     path('video-df/add/', video_df_add, name='video-df-add'),
     path('search/', search, name='search'), # from core.views import search
+    
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
