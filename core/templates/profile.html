@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Profile</h2>
-    <form method="post" enctype="multipart/form-data">
-       {% csrf_token %}
-       {{ form.as_p }}
-       <button type="submit">Создайт</button>
-    </form>
-    <dif>
-    <a href="{% url 'profile' %}">Профиль</a>
-    </dif>>
-     
-{% endblock content %}   
-   
+
+    <div>
+        <img src="{{ profile_object.photo.url }}" height="150px"alt="Profile">
+        <h3>Название канала: {{ profile_object.channel_name }}</h3>
+    </div>
+    {% if request.user == profile_object.user %}
+        <a class="btn btn-warning" href="{% url 'profile-update' profile_object.id %}">Изменить</a>
+        <a class="btn btn-danger" href="{% url 'profile-delete' profile_object.id %}">Удалить</a>
+    {% endif %}
+{% endblock %}
