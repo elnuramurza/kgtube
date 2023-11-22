@@ -51,24 +51,7 @@ def playlist_df_add(request):
             # создаём запись в БД
             playlist_object = playlist_form.save()
             return redirect(playlist_info, id=playlist_object.id)
-
+    
     playlist_form = PlayListForm()
     context["playlist_form"] = playlist_form
-    return render(request, "playlist_df_add.html", context) 
-
-def playlist_update(request, id):
-    playlist_object = UserPlayList.objects.get(id=id)
-    context = {"playlist": playlist_object}
-
-    if request.method == "POST":
-        name = request.POST["playlist-name"]
-        playlist_object.name = name
-        playlist_object.save()
-        return redirect(playlists)
-
-    return render(request, 'playlist_update.html', context)
-
-def playlist_delete(request, id):
-    playlist_object = UserPlayList.objects.get(id=id)
-    playlist_object.delete()
-    return redirect(playlists)    
+    return render(request, "playlist_df_add.html", context)

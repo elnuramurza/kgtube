@@ -24,7 +24,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls), 
+    path('admin/', admin.site.urls),
     path('', homepage),
     path('about/', about_view),
     path('playlists/', playlists),
@@ -32,24 +32,17 @@ urlpatterns = [
     path('playlist/<int:id>/', playlist_info, name='playlist-info'),
     path('playlist/add/', playlist_add, name='playlist-add'),
     path('playlist-df/add/', playlist_df_add, name='playlist-df-add'),
-    path('playlist-update/<int:id>/', playlist_update, name='playlist-update'),
-    path('playlist-delete/<int:id>/', playlist_delete, name='playlist-delete'),
     path('videos/', videos),
     path('video/<int:id>/', video),
     path('video-update/<int:id>/', video_update, name='video-update'),
     path('video-delete/<int:id>/', video_delete, name='video-delete'),
     path('video-add/', video_add, name='video-add'),
-    path('video-df/add/', video_df_add, name='video-df-add'),
     path('search/', search, name='search'), # from core.views import search
+    path('profile-create/', profile_create, name='profile-create'),
     path('profile/<int:id>/', profile_detail, name='profile-detail'),
     path('profile-update/<int:id>/', profile_update, name='profile-update'),
     path('profile-delete/<int:id>/', profile_delete, name='profile-delete'),
 ]
-
-
-
-    
-
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
