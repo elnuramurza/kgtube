@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class UserPlayList(models.Model):
@@ -10,3 +11,18 @@ class UserPlayList(models.Model):
 
     def __str__(self):
         return self.name
+
+class Playlist(models.Model):
+    title = models.CharField(max_length=255, verbose_name="Название плейлиста")
+    owner = models.ForeignKey(User, 
+    on_delete=models.CASCADE,
+    related_name="playlists",
+    verbose_name="Владелец")
+    
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Плейлист"
+        verbose_name_plural = "Плейлисты"        

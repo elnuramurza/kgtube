@@ -57,3 +57,9 @@ class VideoView(models.Model):
         verbose_name = "Просмотр"
         verbose_name_plural = "Просмотры"
         unique_together = [["video", "user"]]
+
+
+
+    
+
+

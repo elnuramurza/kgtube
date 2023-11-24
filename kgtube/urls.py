@@ -23,6 +23,8 @@ from video.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
@@ -32,6 +34,8 @@ urlpatterns = [
     path('playlist/<int:id>/', playlist_info, name='playlist-info'),
     path('playlist/add/', playlist_add, name='playlist-add'),
     path('playlist-df/add/', playlist_df_add, name='playlist-df-add'),
+    path('playlist-update/<int:id>/', playlist_update, name='playlist-update'),
+    path('playlist-delete/<int:id>/', playlist_delete, name='playlist-delete'),
     path('videos/', videos),
     path('video/<int:id>/', video),
     path('video-update/<int:id>/', video_update, name='video-update'),
@@ -42,7 +46,12 @@ urlpatterns = [
     path('profile/<int:id>/', profile_detail, name='profile-detail'),
     path('profile-update/<int:id>/', profile_update, name='profile-update'),
     path('profile-delete/<int:id>/', profile_delete, name='profile-delete'),
+    path('subscriber-add/<int:id>/', subscriber_add, name='subscriber-add'),
+    path('subscriber-remove/<int:id>/', subscriber_remove, name='subscriber-remove'),
 ]
+    
+    
+
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

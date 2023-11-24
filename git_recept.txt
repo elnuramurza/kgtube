@@ -1,0 +1,22 @@
+# КАК СОЗДАТЬ РЕПО:
+# скопировать kgtube на рабочий стол
+# открыть его через VSCode
+# в терминале:
+git init
+git status
+git add .
+git commit -m "create project"
+git branch -M main
+git remote add origin git@github.com:Amankaium/kgtube.git
+git push -u origin main
+
+# КАК ЗАЛИВАТЬ ИЗМЕНЕНИЯ?
+git add .
+git commit -m "some text"
+git push
+
+# как клонировать проект?
+git clone https://github.com/jaka00/kgtube_new.git # ссылка на репозиторий
+
+# как стягивать изменения?
+git pull

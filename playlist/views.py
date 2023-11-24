@@ -55,3 +55,37 @@ def playlist_df_add(request):
     playlist_form = PlayListForm()
     context["playlist_form"] = playlist_form
     return render(request, "playlist_df_add.html", context)
+
+def playlist_update(request, id):
+    context = {}
+    playlist_object = Playlist.objects.get(id=id)
+    if request.user == playlist_object.user:
+        if request.method == "POST":
+            playlist_form = PlaylistForm(
+                instance=playlist_object,
+                data=request.POST,
+                files=request.FILES,
+            )
+            if playlist_form.is_valid():
+                playlist_form.save()
+                messages.success(request, "Плейлисты успешно обновлён!")
+                return redirect(playlist_detail, id=playlist_object.id)
+
+        playlist_form = PlaylistForm(instance=playlist_object)
+        context["playlist_form"] = playlist_form
+        return render(request, "playlist_update.html", context)
+    else:
+        return HttpResponse("Нет доступа")
+
+def playlist_delete(request, id):
+    context = {}
+    if request.user == playlist_object.user:
+        profile_object = Playlist.objects.get(id=id)
+        context["playlist_object"] = playlist_object
+
+        if request.method == "POST":
+            playlist_object.delete()
+            return redirect(homepage)
+        return render(request, "playlist_delete.html", context)
+    else:
+        return HttpResponse("Нет доступа")    
