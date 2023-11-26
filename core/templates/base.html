@@ -60,10 +60,14 @@
             <input class="form-control me-2" type="text" name="key_word" placeholder="Введите">
             <button class="btn btn-dark">Поиск</button>
           </form>
-          <div>
-            <img src="{{ request.user.profile.photo.url }}" height="50px" alt="">
+        <div>
+          <p><img src="{{ request.user.profile.photo.url }}" height="50px" alt=""></p>
+            {% if request.user.is_authenticated and request.user.profile %}
+                <a href="{% url 'profile-detail' request.user.profile.id %}">{{ request.user.profile.channel_name }}</a>
+            {% endif %}
+                <a href="{% url 'registration' %}" class="btn btn-success">Register</a>
+                <a href="{% url 'sign-in' %}" class="btn btn-primary">Sign_in</a>
           </div>
-        </div>
       </div>
     </nav>
     <br>

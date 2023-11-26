@@ -19,7 +19,7 @@ from django.urls import path
 from core.views import *
 from playlist.views import *
 # from playlist import views
-from video.views import *
+from video.views import * 
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,7 +27,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homepage),
+    path('', videos, name='videos_list'),
     path('about/', about_view),
     path('playlists/', playlists),
     # path('playlists/', views.playlists),
@@ -48,7 +48,13 @@ urlpatterns = [
     path('profile-delete/<int:id>/', profile_delete, name='profile-delete'),
     path('subscriber-add/<int:id>/', subscriber_add, name='subscriber-add'),
     path('subscriber-remove/<int:id>/', subscriber_remove, name='subscriber-remove'),
+    path('registration/', registration, name="registration"),
+    path('sign-in/', sign_in, name="sign-in"),
+    path('sign-out/', sign_out, name="sign-out"),
+    path('profile/<int:id>/', profile_detail, name='profile_detail'),
+
 ]
+
     
     
 

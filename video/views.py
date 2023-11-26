@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
 from .forms import CommentForm
+from django.views.generic import ListView
+from .models import Video
 
 
 def videos(request):
@@ -34,8 +36,8 @@ def video(request, id):
                 video_object.likes += 1
                 video_object.save()
             elif "dislike" in request.POST:
-                video_object.likes -= 1
-                video_object.save()  
+                video_object.dislikes.add(request.user)
+                messages.success(request, 'Вы поставили дизлайк.')  
             # return redirect(video, id=video_object.id)
     context = {
         "video": video_object,
@@ -76,3 +78,12 @@ def video_delete(request, id):
     video_object = Video.objects.get(id=id)
     video_object.delete()
     return redirect(videos)
+
+# В файле video/views.py
+
+
+
+class VideoListView(ListView):
+    model = Video
+    template_name = 'video_list.html'  # Укажите имя вашего шаблона для списка видео
+    context_object_name = 'video_list'
