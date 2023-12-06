@@ -19,45 +19,39 @@ from django.urls import path
 from core.views import *
 from playlist.views import *
 # from playlist import views
-from video.views import * 
+from video.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', videos, name='videos_list'),
-    path('about/', about_view),
+    path('', videos, name="home"),
+    path('about/', AboutView.as_view()),
+    path('team/', TeamView.as_view()),
     path('playlists/', playlists),
+    path('playlists-cbv/', PlayListView.as_view(), name='playlist-cbv'),
     # path('playlists/', views.playlists),
     path('playlist/<int:id>/', playlist_info, name='playlist-info'),
     path('playlist/add/', playlist_add, name='playlist-add'),
     path('playlist-df/add/', playlist_df_add, name='playlist-df-add'),
-    path('playlist-update/<int:id>/', playlist_update, name='playlist-update'),
-    path('playlist-delete/<int:id>/', playlist_delete, name='playlist-delete'),
     path('videos/', videos),
-    path('video/<int:id>/', video),
+    path('video/<int:id>/', video, name='video-detail'),
     path('video-update/<int:id>/', video_update, name='video-update'),
+    path('video-update-cbv/<int:pk>/', VideoUpdate.as_view(), name='video-update-cbv'),
     path('video-delete/<int:id>/', video_delete, name='video-delete'),
     path('video-add/', video_add, name='video-add'),
     path('search/', search, name='search'), # from core.views import search
     path('profile-create/', profile_create, name='profile-create'),
     path('profile/<int:id>/', profile_detail, name='profile-detail'),
     path('profile-update/<int:id>/', profile_update, name='profile-update'),
+    path('profile-update-cbv/<int:pk>/', ProfileUpdate.as_view(), name='profile-update-cbv'),
     path('profile-delete/<int:id>/', profile_delete, name='profile-delete'),
     path('subscriber-add/<int:id>/', subscriber_add, name='subscriber-add'),
     path('subscriber-remove/<int:id>/', subscriber_remove, name='subscriber-remove'),
     path('registration/', registration, name="registration"),
     path('sign-in/', sign_in, name="sign-in"),
     path('sign-out/', sign_out, name="sign-out"),
-    path('profile/<int:id>/', profile_detail, name='profile_detail'),
-
 ]
-
-    
-    
-
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
